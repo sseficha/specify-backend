@@ -106,9 +106,10 @@ const recommendationsHandler = (req, res, next) => {
   console.log(body);
   spotifyApi
     .getRecommendations({
-      seed_tracks: body.trackSeed,
-      seed_artists: body.artistSeed,
-      seed_genres: body.genreSeed,
+      // market: "GR",
+      seed_tracks: body.trackSeeds,
+      seed_artists: body.artistSeeds,
+      seed_genres: body.genreSeeds,
       min_energy: body.energy.min,
       max_energy: body.energy.max,
       min_danceability: body.danceability.min,
