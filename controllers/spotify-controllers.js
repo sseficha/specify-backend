@@ -123,8 +123,19 @@ const recommendationsHandler = (req, res, next) => {
     .then(
       function (data) {
         let recommendations = data.body;
-        // console.log(recommendations);
-        res.json(recommendations);
+        let ids = recommendations.tracks.map((rec) => rec.id);
+        spotifyApi.getTracks(ids).then(
+          function (data) {
+            let recommendations = data.body;
+            res.json(recommendations);
+          },
+          function (err) {
+            next({
+              statusCode: err.statusCode,
+              message: err.body.error.message,
+            });
+          }
+        );
       },
       function (err) {
         next({ statusCode: err.statusCode, message: err.body.error.message });
