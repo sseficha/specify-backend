@@ -122,8 +122,11 @@ const recommendationsHandler = (req, res, next) => {
     })
     .then(
       function (data) {
-        let recommendations = data.body;
-        let ids = recommendations.tracks.map((rec) => rec.id);
+        let recommendations = data.body.tracks;
+        if (recommendations.length == 0) {
+          return res.json({ tracks: [] });
+        }
+        let ids = recommendations.map((rec) => rec.id);
         spotifyApi.getTracks(ids).then(
           function (data) {
             let recommendations = data.body;
