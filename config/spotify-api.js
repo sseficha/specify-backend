@@ -11,7 +11,7 @@ try {
 
 var spotifyApi = new SpotifyWebApi({
   clientId: "02f5d8f312494c38a9ef6ffd47e10700",
-  clientSecret: "aa0a86a109af42d8a6146d2c8ead390a",
+  clientSecret: clientSecret,
   redirectUri: "http://localhost:3000/login",
 });
 
